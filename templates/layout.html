@@ -1,24 +1,53 @@
 <!doctype html>
-<html>
+<html lang="en">
 <head>
     {% block head %}
         <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Fira+Code&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
         <title>IT@JCU Programming 1 - {% block title %}Flask Demo{% endblock %}</title>
     {% endblock %}
 </head>
 <body>
 <div id="nav">
-    <a href="{{ url_for('home') }}">Home</a> |
-    <a href="{{ url_for('search') }}">Search</a> |
-    <a href="{{ url_for('about') }}">About</a>
+    <a href="{{ url_for('home') }}"><i class="fas fa-home"></i> Home</a> <span class="separator">|</span>
+    <a href="{{ url_for('search') }}"><i class="fas fa-search"></i> Search</a> <span class="separator">|</span>
+    <a href="{{ url_for('about') }}"><i class="fas fa-info-circle"></i> About</a>
 </div>
-<div id="content">
-    {% block content %}{% endblock %}
+<div id="main-content">
+    <div id="content">
+        {% block content %}{% endblock %}
+    </div>
 </div>
 <div id="footer">
     {% block footer %}
         <p>IT@JCU Flask Demo by Lindsay Ward - <a href="http://github.com/lindsaymarkward/flaskdemo">Original source on GitHub</a>.</p>
     {% endblock %}
 </div>
+<script>
+    // Typewriter effect for About page only
+    if (document.querySelector('h1') && document.querySelector('h1').textContent.includes('About IT@JCU Flask Demo')) {
+        const elements = document.querySelectorAll('.typewriter p');
+        elements.forEach((element, index) => {
+            const text = element.getAttribute('data-text');
+            element.textContent = ''; // Clear text initially
+            let i = 0;
+            function type() {
+                if (i < text.length) {
+                    element.textContent += text.charAt(i);
+                    i++;
+                    setTimeout(type, 50); // Typing speed (50ms per character)
+                } else {
+                    element.classList.remove('typing'); // Remove cursor when done
+                }
+            }
+            // Start typing after a delay based on element index
+            setTimeout(() => {
+                element.classList.add('typing');
+                type();
+            }, index * 1000); // Delay each paragraph (1s apart)
+        });
+    }
+</script>
 </body>
 </html>

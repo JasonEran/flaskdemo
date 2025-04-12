@@ -1,13 +1,191 @@
+/* Global Styles */
 body {
-    font-family: 'Lucida Grande', 'Lucida Sans Unicode', 'Geneva', 'Verdana', sans-serif;
+    font-family: 'Roboto', sans-serif;
+    background: linear-gradient(to bottom, #f0f0f0, #ffffff); /* Gradient background */
     margin: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Ensure body takes full viewport height */
 }
 
-#nav, #footer {
-    background-color: #eee;
+/* Navigation Bar */
+#nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #333; /* Dark gray background */
     padding: 1em;
+    position: fixed; /* Fixed at the top */
+    top: 0;
+    width: 100%;
+    z-index: 1000; /* Stay above content */
+}
+
+#nav a {
+    color: white;
+    text-decoration: none;
+    padding: 0.5em 1em;
+    border-radius: 5px; /* Rounded corners */
+    margin: 0 0.5em;
+}
+
+#nav a:hover {
+    background-color: #555; /* Hover background color */
+}
+
+.separator {
+    color: white;
+    margin: 0 0.5em;
+}
+
+/* Main Content Area */
+#main-content {
+    flex: 1; /* Expand to push footer down */
+    padding-top: 60px; /* Prevent overlap with fixed nav */
 }
 
 #content {
-    margin-left: 3em;
+    padding: 2em;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1); /* Subtle shadow */
+    max-width: 800px; /* Limit max width */
+    margin: 2em auto; /* Center with top/bottom margin */
+}
+
+/* Typewriter Effect */
+.typewriter p {
+    font-family: 'Fira Code', monospace; /* Programmer font */
+    font-size: 0.95em; /* Slightly smaller for code-like feel */
+    color: #333;
+    white-space: pre-wrap; /* Preserve spaces and line breaks */
+    margin: 0 0 1em 0; /* Consistent spacing */
+    position: relative;
+}
+
+.typewriter p.typing::after {
+    content: '|'; /* Blinking cursor */
+    position: absolute;
+    right: -0.5em;
+    color: #333;
+    animation: blink 0.7s infinite;
+}
+
+@keyframes blink {
+    50% { opacity: 0; }
+}
+
+/* Footer */
+#footer {
+    background-color: #333;
+    color: white;
+    padding: 1em;
+    text-align: center;
+    width: 100%;
+    position: relative; /* Sticky behavior */
+}
+
+#footer p {
+    margin: 0; /* Remove default margin */
+    font-size: 0.9em; /* Slightly smaller for elegance */
+}
+
+#footer a {
+    color: #66b3ff; /* Bright link color */
+    text-decoration: none;
+}
+
+#footer a:hover {
+    text-decoration: underline; /* Underline on hover */
+}
+
+/* Search Form */
+form {
+    margin: 0 auto;
+    width: 50%;
+    text-align: center;
+}
+
+input[type="text"] {
+    padding: 0.5em;
+    width: 80%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1em;
+}
+
+input[type="submit"] {
+    padding: 0.5em 1em;
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 1em;
+}
+
+input[type="submit"]:hover {
+    background-color: #555; /* Hover effect */
+}
+
+/* Text Styles */
+h1 {
+    color: #333;
+    margin-bottom: 0.5em;
+}
+
+p {
+    line-height: 1.6; /* Improved line spacing */
+    margin-bottom: 1em;
+}
+
+a {
+    color: #0066cc; /* Link color */
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline; /* Underline on hover */
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    #nav {
+        flex-direction: column; /* Stack vertically */
+        position: static; /* Remove fixed positioning */
+    }
+
+    #nav a {
+        margin: 0.5em 0;
+    }
+
+    .separator {
+        display: none; /* Hide separators */
+    }
+
+    #main-content {
+        padding-top: 0;
+    }
+
+    #content {
+        margin: 1em;
+        padding: 1em;
+    }
+
+    form {
+        width: 90%; /* Wider on small screens */
+    }
+
+    #footer {
+        font-size: 0.85em; /* Slightly smaller on mobile */
+    }
+
+    .typewriter p {
+        font-size: 0.9em; /* Adjust for smaller screens */
+    }
+}
+
+@media (max-width: 800px) {
+    #content {
+        max-width: 100%; /* Full width on medium screens */
+    }
 }
